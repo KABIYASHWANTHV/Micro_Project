@@ -1,0 +1,66 @@
+<h1>Bike Management System</h1>
+<br>
+<div class="div1">
+    <div class="div2">
+        <form #myForm="ngForm">
+        <label for="Bike Id"><b>Bike Id</b></label><br>
+        <input type="text" class="form-control" name="bikeId" #bikeId="ngModel" ngModel required pattern="[0-9]+"/>
+        <div *ngIf="bikeId.touched">
+            <div *ngIf="bikeId.errors?.['required']">
+                <b style="color: red;">Bike Id Required.</b>
+            </div>
+            <div *ngIf="bikeId.errors?.['pattern']">
+                <b style="color: red;">Invalid Bike Id.</b>
+            </div>
+        </div>
+        <label for="Bike Name"><b>Bike Name</b></label><br>
+        <input type="text" class="form-control" name="bikeName" #bikeName="ngModel" ngModel required>
+        <div *ngIf="bikeName.touched">
+            <div *ngIf="bikeName.errors?.['required']">
+                <b style="color: red;">Bike Name Required.</b>
+            </div>
+        </div>
+        <label for="Bike Price"><b>Bike Price</b></label><br>
+        <input type="text" class="form-control" name="bikePrice" #bikePrice="ngModel" ngModel required pattern="[0-9]+">
+        <div *ngIf="bikePrice.touched">
+            <div *ngIf="bikePrice.errors?.['required']">
+                <b style="color: red;">Bike Price Required.</b>
+            </div>
+            <div *ngIf="bikePrice.errors?.['pattern']">
+                <b style="color: red;">Invalid Bike Price.</b>
+            </div>
+        </div>
+        <label for="Bike Color"><b>Bike Color</b></label><br>
+        <input type="text" class="form-control" name="bikeColor" #bikeColor="ngModel" ngModel required>
+        <div *ngIf="bikeColor.touched">
+            <div *ngIf="bikeColor.errors?.['required']">
+                <b style="color: red;">Bike Color Required.</b>
+            </div>
+        </div><br>
+        <button class="btn btn-success" (click)="insertBike(myForm.value)">Save</button>&nbsp;&nbsp;
+        <button class="btn btn-primary" (click)="updateBike(myForm.value)">Update</button>&nbsp;&nbsp;
+        <button class="btn btn-info" (click)="deleteBike(myForm.value)">Delete</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="findBike(myForm.value)">Find</button>&nbsp;
+        <button class="btn btn-danger" (click)="findAllBike()">Find All</button>
+    </form>
+    </div>
+    <div class="div3">
+        <h3>{{result}}</h3>
+        <div style="width: 100%;" *ngIf="flag">
+            <table width="80%" align="center" class="table table-bordered">
+                <tr>
+                    <th>Bike Id</th>
+                    <th>Bike Name</th>
+                    <th>Bike Price</th>
+                    <th>Bike Color</th>
+                </tr>
+                <tr *ngFor="let bke of bikeArr">
+                    <td>{{bke.id}}</td>
+                    <td>{{bke.bikeName}}</td>
+                    <td>{{bke.bikePrice}}</td>
+                    <td>{{bke.bikeColor}}</td>
+                </tr>
+            </table>
+        </div>
+    </div> 
+</div>
